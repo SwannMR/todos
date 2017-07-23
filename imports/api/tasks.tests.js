@@ -19,7 +19,8 @@ if (Meteor.isServer) {
           text: 'test task',
           createdAt: new Date(),
           owner: userId,
-          username: 'TimTester'
+          username: 'TimTester',
+          setChecked: false,
         });
       });
 
@@ -30,6 +31,10 @@ if (Meteor.isServer) {
         deleteTask.apply(invocation, [taskId])
         assert.equal(Tasks.find().count(), 0);
       });
+
+      it('can set checked to true', () => {
+        
+      })
     });
   });
 
