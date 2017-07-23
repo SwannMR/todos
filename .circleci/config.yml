@@ -3,9 +3,10 @@ jobs:
   build:
     working_directory: ~/tmp
     docker:
-      - image: circleci/ubuntu
+      - image: circleci/node:4.8.4
+      - image: mongo:3.4.4
     steps:
       - checkout
       - run: https://install.meteor.com | sh
-      - run: npm install
+      - run: meteor npm install
       - run: meteor test --once --driver-package dispatch:mocha
