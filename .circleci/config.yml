@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/tmp
     docker:
-      - image: circleci/ubuntu:16.04
+      - image: circleci/ubuntu
     steps:
       - checkout
       - run: https://install.meteor.com | sh
