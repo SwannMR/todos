@@ -21,3 +21,4 @@ react-meteor-data
 practicalmeteor:mocha
 accounts-ui
 accounts-password
+dispatch:mocha
