@@ -8,6 +8,6 @@ jobs:
     steps:
       - checkout
       - run: curl https://install.meteor.com | sh
-      - run: export LC_ALL=en_ZA.UTF-8
+      - run: sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && sudo dpkg-reconfigure --frontend=noninteractive locales
       - run: meteor npm install
       - run: meteor test --once --driver-package dispatch:mocha
