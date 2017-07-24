@@ -10,7 +10,7 @@ if (Meteor.isServer) {
   
   describe('Tasks', () => {
     describe('methods', () => {
-      const userId = Random.id()
+      const userId = Random.id();
       let taskId;
       
       beforeEach(() => {
@@ -20,7 +20,7 @@ if (Meteor.isServer) {
           createdAt: new Date(),
           owner: userId,
           username: 'TimTester',
-          setChecked: false,
+          checked: false,
         });
       });
 
@@ -28,13 +28,18 @@ if (Meteor.isServer) {
         const deleteTask = Meteor.server.method_handlers['tasks.remove'];
         const invocation = { userId };
 
-        deleteTask.apply(invocation, [taskId])
+        deleteTask.apply(invocation, [taskId]);
         assert.equal(Tasks.find().count(), 0);
       });
 
       it('can set checked to true', () => {
-        
-      })
+        const setChecked = Meteor.server.method_handlers['tasks.setChecked'];
+        const invocation = { userId };
+
+        setChecked.apply(invocation, [taskId, true]);
+        const task = Tasks.findOne(taskId);
+        assert.equal(task.checked, true);
+      });
     });
   });
 
